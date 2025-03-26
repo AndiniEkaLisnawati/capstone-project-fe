@@ -1,7 +1,7 @@
 import Logo from '../assets/images/Logo.png'
 import { Button, Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "flowbite-react";
 
-export default function NavigationBar() {
+const NavigationBar = () => {
   return (
     <>
     
@@ -28,3 +28,5 @@ export default function NavigationBar() {
     </>
   );
 }
+
+export default NavigationBar;

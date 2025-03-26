@@ -2,6 +2,8 @@
 import { Button } from "flowbite-react";
 import './App.css'
 import NavigationBar from "./components/NavigationBar";
+import { Main } from "./components/Main";
+
 
 
 function App() {
@@ -9,7 +11,8 @@ function App() {
 
   return (
     <>
-      <NavigationBar></NavigationBar>
+      <NavigationBar/>
+      <Main/>
     </>
   )
 }
