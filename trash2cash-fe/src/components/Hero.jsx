@@ -5,7 +5,9 @@ import Daun from "../assets/images/Daun.png";
 import ScrollDown from "../assets/images/ScrollDown.png";
 import Waste from "../assets/images/Waste.png"
 
-export const Main = () => {
+
+
+export const Hero = () => {
   return (
     <>
   <div className="bg-white flex flex-row justify-center w-full">

@@ -1,7 +1,9 @@
 import Logo from '../assets/images/Logo.png'
 import { Button, Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "flowbite-react";
+import { useNavigate } from 'react-router-dom';
 
 const NavigationBar = () => {
+  const navigate = useNavigate();
   return (
     <>
     
@@ -11,11 +13,11 @@ const NavigationBar = () => {
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Trash2Cash</span>
       </NavbarBrand>
       <div className="flex md:order-2 ">
-        <Button className="bg-[#00C81E] hover:bg-[#009F18] text-white font-bold"> Get started</Button>
+        <Button onClick={() => navigate('/login')} className="bg-[#00C81E] hover:bg-[#009F18] text-white font-bold"> Get started</Button>
         <NavbarToggle />
       </div>
       <NavbarCollapse>
-        <NavbarLink href="#" className="text-amber-950 hover:!text-[#009F18] font-medium">
+        <NavbarLink href="/" className="text-amber-950 hover:!text-[#009F18] font-medium"> 
           Home
         </NavbarLink>
         <NavbarLink href="#" className="text-amber-950 hover:!text-[#009F18] font-medium">About</NavbarLink> 
