@@ -1,120 +1,89 @@
-'use client'
-import React from 'react'
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
-import { Link } from "react-router-dom";
-import { HiMail } from "react-icons/hi";
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
-
-const Login = () => {
+export default function Login({ setIsLoggedIn }) {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    repeatPassword: "",
-    phone: "",
-    role: "user",
-  });
 
-
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    let key = id;
-    // Mapping id input ke properti state yang sesuai
-    if (id === "username3") key = "username";
-    if (id === "email4") key = "email";
-    setFormData({ ...formData, [key]: value });
-  };
-
-  const handleSubmit = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-
-    if (formData.password !== formData.repeatPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
-
-    try {
-      const response = await axios.post("/api/register", {
-        username: formData.username,
-        email: formData.email,
-        password: formData.password,
-        phone: formData.phone,
-        role: formData.role,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      alert("Registration successful: " + response.data.message);
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
-    } catch (error) {
-      console.error("Registration failed:", error.response?.data || error.message);
-    }
-
+    setIsLoggedIn(true);
+    navigate("/");
   };
 
   return (
-    <>
-      <div className="bg-white max-w-[1440px] w-full h-auto flex justify-center">
-       
-        <form onSubmit={handleSubmit} className="flex w-full max-w-md flex-col gap-4 pt-30">
-          <div className="max-w-md">
-            <div className="mb-2 block">
-              <Label htmlFor="username3">Username</Label>
-            </div>
-            <TextInput onChange={handleChange} id="username3" placeholder="Input Username" addon="@" required />
+    <section className="bg-gray-50 dark:bg-gray-900">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+              Sign in to your account
+            </h1>
+            <form className="space-y-4 md:space-y-6" onSubmit={handleLogin}>
+              <div>
+                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Your email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-[#00C81E] focus:border-[#00C81E] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="name@company.com"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="••••••••"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-[#00C81E] focus:border-[#00C81E] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  required
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-start">
+                  <div className="flex items-center h-5">
+                    <input
+                      id="remember"
+                      aria-describedby="remember"
+                      type="checkbox"
+                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-[#00C81E] dark:ring-offset-gray-800"
+                      required
+                    />
+                  </div>
+                  <div className="ml-3 text-sm">
+                    <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">
+                      Remember me
+                    </label>
+                  </div>
+                </div>
+                <Link
+                  to="/forgot-password"
+                  className="text-sm font-medium text-[#00C81E] hover:underline dark:text-primary-500"
+                >
+                  Forgot password?
+                </Link>
+              </div>
+              <button
+                type="submit"
+                className="w-full text-white bg-[#00C81E] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#00C81E] dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              >
+                Sign in
+              </button>
+              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                Don’t have an account yet?{' '}
+                <Link to="/register" className="font-medium text-[#00C81E] hover:underline dark:text-primary-500">
+                  Sign up
+                </Link>
+              </p>
+            </form>
           </div>
-
-          <div className="max-w-md">
-            <div className="mb-2 block">
-              <Label htmlFor="email4">Your email</Label>
-            </div>
-            <TextInput onChange={handleChange} id="email4" type="email" icon={HiMail} rightIcon={HiMail} placeholder="name@flowbite.com" required />
-          </div>
-
-          <div>
-            <div>
-              <label htmlFor="phone">phone</label>
-            </div>
-            <TextInput onChange={handleChange} id="phone" type="text" placeholder="08" required shadow></TextInput>
-          </div>
-
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="password">Your password</Label>
-            </div>
-            <TextInput onChange={handleChange} id="password" type="password" required shadow />
-          </div>
-
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="repeatPassword">Repeat password</Label>
-            </div>
-            <TextInput onChange={handleChange} id="repeatPassword" type="password" required shadow />
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Checkbox id="agree" required />
-            <Label htmlFor="agree" className="flex">
-              I agree with the&nbsp;
-              <Link href="#" className="text-cyan-600 hover:underline dark:text-cyan-500">
-                terms and conditions
-              </Link>
-            </Label>
-          </div>
-          <Button type="submit" className="bg-[#00C81E] hover:bg-[#009F18] text-white">
-            Register new account
-          </Button>
-        </form>
-  </div>
-    </>
-  )
+        </div>
+      </div>
+    </section>
+  );
 }
-
-export default Login

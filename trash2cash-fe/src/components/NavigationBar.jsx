@@ -2,7 +2,7 @@ import Logo from '../assets/images/Logo.png'
 import { Button, Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "flowbite-react";
 import { useNavigate } from 'react-router-dom';
 
-const NavigationBar = () => {
+const NavigationBar = ({isLoggedIn}) => {
   const navigate = useNavigate();
   return (
     <>
@@ -12,10 +12,26 @@ const NavigationBar = () => {
         <img src={Logo} className="h-20 sm:h-12 w-auto" alt="Trash2cash Logo" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Trash2Cash</span>
       </NavbarBrand>
-      <div className="flex md:order-2 ">
-        <Button onClick={() => navigate('/login')} className="bg-[#00C81E] hover:bg-[#009F18] text-white font-bold"> Get started</Button>
+
+      <div className="flex md:order-2">
+        {isLoggedIn ? (
+          <Button
+            onClick={() => navigate("/dashboard")}
+            className="bg-[#00C81E] hover:bg-[#009F18] text-white font-bold"
+          >
+            Dashboard
+          </Button>
+        ) : (
+          <Button
+            onClick={() => navigate("/register")}
+            className="bg-[#00C81E] hover:bg-[#009F18] text-white font-bold"
+          >
+            Get Started
+          </Button>
+        )}
         <NavbarToggle />
       </div>
+      
       <NavbarCollapse>
         <NavbarLink href="/" className="text-amber-950 hover:!text-[#009F18] font-medium"> 
           Home
