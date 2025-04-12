@@ -39,7 +39,6 @@ const NavigationBar = ({isLoggedIn}) => {
         <NavbarLink href="#" className="text-amber-950 hover:!text-[#009F18] font-medium">About</NavbarLink> 
         <NavbarLink href="#" className="text-amber-950 hover:!text-[#009F18] font-medium">Services</NavbarLink>
         <NavbarLink href="#" className="text-amber-950 hover:!text-[#009F18] font-medium">Location & Contact</NavbarLink>
-        <NavbarLink href="#" className="text-amber-950 hover:!text-[#009F18] font-medium">Dashboard</NavbarLink>
       </NavbarCollapse>
     </Navbar>
     

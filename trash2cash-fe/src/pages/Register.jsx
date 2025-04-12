@@ -23,12 +23,12 @@ const Register = () => {
   const handleChange = (e) => {
     const { id, value } = e.target;
     let key = id;
-    // Mapping id input ke properti state yang sesuai
     if (id === "username3") key = "username";
     if (id === "email4") key = "email";
     setFormData({ ...formData, [key]: value });
   };
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -38,7 +38,7 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post("/api/register", {
+      const response = await axios.post("http://localhost:3000/api/register", {
         username: formData.username,
         email: formData.email,
         password: formData.password,
@@ -61,62 +61,59 @@ const Register = () => {
 
   return (
     <>
-      <div className="bg-white max-w-[1440px] w-full h-auto flex justify-center">
+    <div className="bg-gray-50 dark:bg-gray-900 w-full min-h-screen flex justify-center items-center py-25">
+  <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-6 md:p-8 leading-tight">
+      <h1 className="text-xl leading-tight tracking-tight font-bold text-gray-900 md:text-2xl dark:text-white">
+        Create your Account
+      </h1>
 
-       
-        <form onSubmit={handleSubmit} className="flex w-full max-w-md flex-col gap-4 pt-30">
-          <div className="max-w-md">
-            <div className="mb-2 block">
-              <Label htmlFor="username3">Username</Label>
-            </div>
-            <TextInput onChange={handleChange} id="username3" placeholder="Input Username" addon="@" required />
-          </div>
+      <div>
+        <Label htmlFor="username3" className="mb-2 block">Username</Label>
+        <TextInput onChange={handleChange} id="username3" placeholder="Input Username" addon="@" required />
+      </div>
 
-          <div className="max-w-md">
-            <div className="mb-2 block">
-              <Label htmlFor="email4">Your email</Label>
-            </div>
-            <TextInput onChange={handleChange} id="email4" type="email" icon={HiMail} rightIcon={HiMail} placeholder="name@flowbite.com" required />
-          </div>
+      <div>
+        <Label htmlFor="email4" className="mb-2 block">Your email</Label>
+        <TextInput onChange={handleChange} id="email4" type="email" icon={HiMail} rightIcon={HiMail} placeholder="name@flowbite.com" required />
+      </div>
 
-          <div>
-            <div>
-              <label htmlFor="phone">phone</label>
-            </div>
-            <TextInput onChange={handleChange} id="phone" type="text" placeholder="08" required shadow></TextInput>
-          </div>
+      <div>
+        <Label htmlFor="phone" className="mb-2 block">Phone</Label>
+        <TextInput onChange={handleChange} id="phone" type="text" placeholder="08" required shadow />
+      </div>
 
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="password">Your password</Label>
-            </div>
-            <TextInput onChange={handleChange} id="password" type="password" required shadow />
-          </div>
+      <div>
+        <Label htmlFor="password" className="mb-2 block">Your password</Label>
+        <TextInput onChange={handleChange} id="password" type="password" required shadow />
+      </div>
 
-          <div>
-            <div className="mb-2 block">
-              <Label htmlFor="repeatPassword">Repeat password</Label>
-            </div>
-            <TextInput onChange={handleChange} id="repeatPassword" type="password" required shadow />
-          </div>
+      <div>
+        <Label htmlFor="repeatPassword" className="mb-2 block">Repeat password</Label>
+        <TextInput onChange={handleChange} id="repeatPassword" type="password" required shadow />
+      </div>
 
-          <div className="flex items-center gap-2">
-            <Checkbox id="agree" required />
-            <Label htmlFor="agree" className="flex">
-              I agree with the&nbsp;
-              <Link href="#" className="text-[#00C81E] hover:underline dark:text-cyan-500">
-                terms and conditions
-              </Link>
-            </Label>
-          </div>
-          <Button type="submit" className="bg-[#00C81E] hover:bg-[#009F18] text-white">
-            Register new account
-          </Button>
-          <Link to="/login" className=" text-[#00C81E] hover:underline dark:text-cyan-500">
-            Already Have Account?
+      <div className="flex items-center gap-2">
+        <Checkbox id="agree" required />
+        <Label htmlFor="agree" className="flex">
+          I agree with the&nbsp;
+          <Link to="#" className="text-[#00C81E] hover:underline dark:text-cyan-500">
+            terms and conditions
           </Link>
-        </form>
+        </Label>
+      </div>
+
+      <Button type="submit" className="bg-[#00C81E] hover:bg-[#009F18] text-white">
+        Register new account
+      </Button>
+
+      <Link to="/login" className="text-[#00C81E] hover:underline dark:text-cyan-500 text-sm">
+        Already have an account?
+      </Link>
+    </form>
   </div>
+</div>
+
     </>
   )
 }
