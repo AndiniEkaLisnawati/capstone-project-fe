@@ -1,5 +1,11 @@
 import NavigationBar from "../components/NavigationBar"
+import ScanAndEarn from "../components/ScanAndEarn"
+import FooterSection from "../components/FooterSection"
+import Testimonials from "../components/Testimonials"
+import OurFiture from "../components/OurFiture"
 import { Hero } from "../components/Hero"
+import UploadImage from "../components/UploadImage"
+
 
  function Home() {
     return(
@@ -7,6 +13,12 @@ import { Hero } from "../components/Hero"
             <NavigationBar>
             </NavigationBar>
             <Hero></Hero>
+            <OurFiture></OurFiture>
+            <ScanAndEarn></ScanAndEarn>
+            <UploadImage></UploadImage>
+            <Testimonials></Testimonials>
+            <FooterSection></FooterSection>
+
         </>
     )
 }
