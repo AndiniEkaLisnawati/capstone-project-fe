@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const NavigationBar = ({isLoggedIn}) => {
   const navigate = useNavigate();
+
   return (
     <>
     
@@ -15,12 +16,14 @@ const NavigationBar = ({isLoggedIn}) => {
 
       <div className="flex md:order-2">
         {isLoggedIn ? (
+          <>
           <Button
             onClick={() => navigate("/dashboard")}
             className="bg-[#00C81E] hover:bg-[#009F18] text-white font-bold"
-          >
+            >
             Dashboard
           </Button>
+          </>
         ) : (
           <Button
             onClick={() => navigate("/register")}

@@ -1,10 +1,10 @@
 import NavigationBar from "../components/NavigationBar"
 import { Hero } from "../components/Hero"
 
- function Home() {
+ function Home({isLoggedIn, setIsLoggedIn}) {
     return(
         <>
-            <NavigationBar>
+            <NavigationBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}>
             </NavigationBar>
             <Hero></Hero>
         </>

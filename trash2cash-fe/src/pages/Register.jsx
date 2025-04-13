@@ -51,18 +51,19 @@ const Register = () => {
       );
       alert("Registration successful: " + response.data.message);
       setTimeout(() => {
-        navigate("/login");
+        navigate("/");
       }, 3000);
     } catch (error) {
-      console.error("Registration failed:", error.response?.data || error.message);
+      const errorMessage = error.response?.data?.message || "Terjadi kesalahan saat registrasi.";
+      alert("Registration failed: " + errorMessage);
     }
 
   };
 
   return (
     <>
-    <div className="bg-gray-50 dark:bg-gray-900 w-full min-h-screen flex justify-center items-center py-25">
-  <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+    <div className="bg-gray-50 dark:bg-gray-900 w-full min-h-screen flex justify-center items-center py-25" style={{backgroundImage: "url('/src/assets/images/BackgroundLR.png')"}}> 
+  <div className=" w-full bg-white/80 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-6 md:p-8 leading-tight">
       <h1 className="text-xl leading-tight tracking-tight font-bold text-gray-900 md:text-2xl dark:text-white">
         Create your Account
