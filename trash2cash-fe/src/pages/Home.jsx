@@ -5,6 +5,7 @@ import Testimonials from "../components/Testimonials"
 import OurFiture from "../components/OurFiture"
 import { Hero } from "../components/Hero"
 import UploadImage from "../components/UploadImage"
+import ChallengesPage from "./ChallengePage"
 
 
  function Home({isLoggedIn, setIsLoggedIn}) {

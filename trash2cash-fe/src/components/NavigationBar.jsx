@@ -1,6 +1,8 @@
 import Logo from '../assets/images/Logo.png'
 import { Button, Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "flowbite-react";
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
 
 const NavigationBar = ({isLoggedIn}) => {
   const navigate = useNavigate();
@@ -39,7 +41,7 @@ const NavigationBar = ({isLoggedIn}) => {
         <NavbarLink href="/" className="text-amber-950 hover:!text-[#009F18] font-medium"> 
           Home
         </NavbarLink>
-        <NavbarLink href="#" className="text-amber-950 hover:!text-[#009F18] font-medium">About</NavbarLink> 
+        <Link to="/challenges" className="text-amber-950 hover:!text-[#009F18] font-medium">Challenge</Link>        
         <NavbarLink href="#" className="text-amber-950 hover:!text-[#009F18] font-medium">Services</NavbarLink>
         <NavbarLink href="#" className="text-amber-950 hover:!text-[#009F18] font-medium">Location & Contact</NavbarLink>
       </NavbarCollapse>
