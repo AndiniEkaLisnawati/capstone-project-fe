@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
+
 
 const testimonials = [
   {
@@ -34,6 +36,8 @@ export default function Testimonials() {
 
   const handlePrev = () => setIndex((index - 1 + testimonials.length) % testimonials.length);
   const handleNext = () => setIndex((index + 1) % testimonials.length);
+  const navigate = useNavigate(); 
+
 
   return (
     <div className="px-6 md:px-20 lg:px-40 py-16 bg-white text-black">
@@ -41,7 +45,10 @@ export default function Testimonials() {
       <div className="bg-[#1d1d3f] rounded-3xl p-10 flex flex-col md:flex-row justify-between items-center mb-16">
         <div>
           <h2 className="text-white text-3xl md:text-4xl font-semibold mb-4">Let’s Learn How To Upload Now!</h2>
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-6 py-2 rounded-full">Start Now</button>
+          <button
+            className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-6 py-2 rounded-full"
+            onClick={() => navigate('/uploadimage')}>Start Now
+          </button>
         </div>
         <div className="mt-8 md:mt-0">
           <div className="bg-lime-300 rounded-full w-36 h-36 flex items-center justify-center">

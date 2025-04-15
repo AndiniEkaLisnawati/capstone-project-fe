@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
+import React from "react";
 import Point from "../assets/images/point-confeti.png";
 import Organik from "../assets/images/sampah-organik.jpg";
 import NonOrganik from "../assets/images/sampah-non-organik.jpg";
+
 
 
 
@@ -9,20 +11,20 @@ import NonOrganik from "../assets/images/sampah-non-organik.jpg";
 const uploads = [
   {
     type: "Organik",
-    date: "3 March 2023",
-    image: {Organik},
+    date: "3 March 2025",
+    image: Organik,
     color: "bg-green-400"
   },
   {
     type: "Non Organik",
-    date: "10 March 2023",
-    image: {NonOrganik},
+    date: "10 March 2025",
+    image: NonOrganik,
     color: "bg-red-500"
   },
   {
     type: "Organik",
-    date: "24 March 2023",
-    image: {Organik},
+    date: "24 March 2025",
+    image: Organik,
     color: "bg-green-400"
   }
 ];
@@ -44,15 +46,15 @@ const UploadCard = ({ type, date, image, color }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
     >
-      <Card className="bg-lime-200">
+      <Card className="bg-lime-200 ">
         <CardContent className="p-2">
-          <div className={`text-white text-sm px-2 py-1 rounded-t ${color}`}>
+          <div className={`text-white text-sm px-2 mb-2 py-1 rounded-md ${color}`}>
             {type}, {date}
           </div>
           <img
             src={image}
             alt={type}
-            className="w-full h-24 object-cover rounded-b"
+            className="w-full h-24 object-cover rounded-md"
           />
         </CardContent>
       </Card>
@@ -62,12 +64,15 @@ const UploadCard = ({ type, date, image, color }) => {
 
 export default function PointsDashboard() {
   return (
-    <div className="flex min-h-screen bg-white px-6 py-16 md:px-20 lg:px-[6rem] mt-[10rem]">
+    
+    <div className="flex min-h-screen bg-white px-6 py-4 md:px-20 lg:px-[6rem] mt-[10rem]">
       {/* Sidebar */}
       <div className="w-35 bg-lime-300 rounded-2xl"></div>
 
       {/* Main Content */}
       <div className="flex flex-1 flex-col items-center justify-center px-4 py-8 relative">
+
+
 
 
         <motion.h1

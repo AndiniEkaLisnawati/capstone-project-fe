@@ -6,6 +6,7 @@ import OurFiture from "../components/OurFiture"
 import { Hero } from "../components/Hero"
 import UploadImage from "../components/UploadImage"
 import PointsDashboard from "../components/PointDashbord"
+import NotificationAlert from "../components/NotificationAlert"
 
 
  function Home({isLoggedIn, setIsLoggedIn}) {
@@ -20,6 +21,8 @@ import PointsDashboard from "../components/PointDashbord"
             <Testimonials></Testimonials>
             <PointsDashboard></PointsDashboard>
             <FooterSection></FooterSection>
+            <NotificationAlert></NotificationAlert>
+
 
         </>
     )
