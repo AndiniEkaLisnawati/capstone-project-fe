@@ -5,7 +5,7 @@ import Testimonials from "../components/Testimonials"
 import OurFiture from "../components/OurFiture"
 import { Hero } from "../components/Hero"
 import UploadImage from "../components/UploadImage"
-import ChallengesPage from "./ChallengePage"
+import PointsDashboard from "../components/PointDashbord"
 
 
  function Home({isLoggedIn, setIsLoggedIn}) {
@@ -18,6 +18,7 @@ import ChallengesPage from "./ChallengePage"
             <ScanAndEarn></ScanAndEarn>
             <UploadImage></UploadImage>
             <Testimonials></Testimonials>
+            <PointsDashboard></PointsDashboard>
             <FooterSection></FooterSection>
 
         </>
