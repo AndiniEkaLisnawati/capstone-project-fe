@@ -3,12 +3,20 @@ import NavigationBar from "./components/NavigationBar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
+import DashboardPage from "./pages/DashboardPage";
 import ChallengePage from "./pages/ChallengePage";
 import { useState } from "react";
+import { useEffect } from "react";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const storedLogin = localStorage.getItem("isLoggedIn");
+    if (storedLogin === "true") {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   return (
     <>
@@ -21,7 +29,7 @@ function App() {
           />
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/register" element={<Register setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/challenges" element={<ChallengePage />} /> 
         </Routes>
       </div>

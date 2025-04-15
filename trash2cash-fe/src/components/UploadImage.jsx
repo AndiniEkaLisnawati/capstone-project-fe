@@ -32,7 +32,7 @@ export default function UploadImage() {
 
       <div className="relative z-10 flex flex-col items-center justify-center px-4 py-24 text-center">
         <h1 className="text-5xl font-extrabold text-gray-800 mb-4">
-          <span className="text-black">1.</span> Upload
+          <span className="text-black"></span> Upload sampahmu disini
         </h1>
 
         <p className="text-xl text-green-700 font-semibold mb-2">
