@@ -6,40 +6,40 @@ import { useNavigate } from "react-router-dom";
 
 const videoContent = [
     {
-      judul: "Cara Daur Ulang di Rumah",
-      link: "https://www.youtube.com/embed/dQw4w9WgXcQ", // gunakan embed link
+      judul: "Z​ero Waste Lifestyle - Terapkan 6R untuk Gaya Hidup",
+      link: "https://www.youtube.com/embed/dEu3-ZNaok0",
     },
     {
-      judul: "Apa Itu Ekonomi Hijau?",
-      link: "https://www.youtube.com/embed/3JZ_D3ELwOQ",
+      judul: "Sumber Energi Ramah Lingkungan",
+      link: "https://www.youtube.com/embed/RMxchSPq0zM",
     },
     {
-      judul: "Mengelola Sampah Organik",
-      link: "https://www.youtube.com/embed/oHg5SJYRHA0",
+      judul: "Rumah Ramah Lingkungan",
+      link: "https://www.youtube.com/embed/XQgXaNopir8?si=Et_oG86fVP6Kbp-L",
     },
     {
-        judul: "Cara Daur Ulang di Rumah",
-        link: "https://www.youtube.com/embed/dQw4w9WgXcQ", // gunakan embed link
+        judul: "Energi Terbarukan Terbesar di Indonesia",
+        link: "https://www.youtube.com/embed/jSMkRU0e2tY?si=MbvWJl6v6PYQe7g3", // gunakan embed link
       },
       {
-        judul: "Apa Itu Ekonomi Hijau?",
-        link: "https://www.youtube.com/embed/3JZ_D3ELwOQ",
+        judul: "G​aya Hidup Ramah Lingkungan",
+        link: "https://www.youtube.com/embed/rHFx82rd4-Y",
       },
       {
-        judul: "Mengelola Sampah Organik",
-        link: "https://www.youtube.com/embed/oHg5SJYRHA0",
+        judul: "T​eknologi Ramah Lingkungan di Kehidupan Kita",
+        link: "https://www.youtube.com/embed/BZMP9yhX6xg",
       },
       {
-        judul: "Cara Daur Ulang di Rumah",
-        link: "https://www.youtube.com/embed/dQw4w9WgXcQ", // gunakan embed link
+        judul: "H​idup Ramah Lingkungan untuk Adaptasi & Mitigasi",
+        link: "https://www.youtube.com/embed/8b6aRFQf0L4", // gunakan embed link
       },
       {
-        judul: "Apa Itu Ekonomi Hijau?",
-        link: "https://www.youtube.com/embed/3JZ_D3ELwOQ",
+        judul: "A​nimasi Anak Ramah Lingkungan",
+        link: "https://www.youtube.com/embed/AvLT7U73FCc",
       },
       {
-        judul: "Mengelola Sampah Organik",
-        link: "https://www.youtube.com/embed/oHg5SJYRHA0",
+        judul: "L​angkah Kecil Menuju Green Economy",
+        link: "https://www.youtube.com/embed/KgnHDgs4eFI?si=TOpqoCC2HZsBG0kV",
       },
   ];
   
@@ -62,7 +62,7 @@ const videoContent = [
     {
       judul: "Konsep Zero Waste",
       slug: "konsep-zero-waste",
-      artikel: "",
+      artikel: "Zero waste adalah gaya hidup yang bertujuan untuk mengurangi produksi sampah seminimal mungkin—idealnya hingga nol.",
     },
     {
       judul: "Energi Terbarukan di Rumah",
@@ -70,9 +70,9 @@ const videoContent = [
       artikel: "Energi terbarukan adalah energi yang berasal dari sumber daya alam yang tidak habis, seperti matahari, angin, dan air.",
     },
     {
-      judul: "Manfaat Mengurangi Plastik",
-      slug: "manfaat-mengurangi-plastik",
-      artikel: "enggunaan plastik sekali pakai telah menjadi masalah global yang serius.",
+      judul: "Mengenal Perubahan Iklim",
+      slug: "mengenal-perubahan-iklim",
+      artikel: "Perubahan iklim adalah perubahan jangka panjang dalam suhu dan pola cuaca di bumi.",
     },
     {
       judul: "Manfaat Mengurangi Plastik",
@@ -80,14 +80,14 @@ const videoContent = [
       artikel: "enggunaan plastik sekali pakai telah menjadi masalah global yang serius.",
     },
     {
-      judul: "Manfaat Mengurangi Plastik",
-      slug: "manfaat-mengurangi-plastik",
-      artikel: "enggunaan plastik sekali pakai telah menjadi masalah global yang serius.",
+      judul: "Membuat Kebun Urban",
+      slug: "membuat-kebun-urban",
+      artikel: "Kebun urban adalah solusi kreatif untuk bercocok tanam di area perkotaan yang sempit.",
     },
     {
-      judul: "Manfaat Mengurangi Plastik",
-      slug: "manfaat-mengurangi-plastik",
-      artikel: "enggunaan plastik sekali pakai telah menjadi masalah global yang serius.",
+      judul: "Edukasi Lingkungan untuk Anak",
+      slug: "edukasi-lingkungan-anak",
+      artikel: "Mendidik anak-anak tentang lingkungan sejak dini sangat penting agar mereka tumbuh menjadi generasi yang peduli dan bertanggung jawab terhadap alam.",
     },
   ];
 
