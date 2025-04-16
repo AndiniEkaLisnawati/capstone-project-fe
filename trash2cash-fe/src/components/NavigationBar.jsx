@@ -1,4 +1,4 @@
-import Logo from '../assets/images/Logo.png'
+import Logo from '../assets/images/Fix-Logo.png'
 import { Button, Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "flowbite-react";
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
@@ -11,11 +11,13 @@ const NavigationBar = ({isLoggedIn}) => {
     <>
     
     <Navbar fluid rounded className="fixed top-0 left-0 w-full z-50 shadow-md h-20 pt-5">
-      <NavbarBrand href="https://flowbite-react.com">
-        <img src={Logo} className="h-20 sm:h-12 w-auto" alt="Trash2cash Logo" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Trash2Cash</span>
-      </NavbarBrand>
-
+    <NavbarBrand href="">
+      <img
+        src={Logo}
+        alt="Trash2cash Logo"
+        className="pl-10 h-10 sm:h-12 md:h-14 lg:h-16 w-auto max-w-full"
+      />
+    </NavbarBrand>
       <div className="flex md:order-2">
         {isLoggedIn ? (
           <>

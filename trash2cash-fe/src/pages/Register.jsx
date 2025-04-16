@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import { Label, TextInput, Checkbox, Button, Select } from "flowbite-react";
+import { Label, TextInput, Checkbox, Button } from "flowbite-react";
 import { HiMail } from "react-icons/hi";
+import { BiSolidTrash } from "react-icons/bi";
+import { FaTruck } from "react-icons/fa";
+import Select from "react-select";
 
 const Register = ({setIsLoggedIn}) => {
   const navigate = useNavigate();
@@ -22,6 +25,11 @@ const Register = ({setIsLoggedIn}) => {
     if (id === "email4") key = "email";
     setFormData({ ...formData, [key]: value });
   };
+
+  const RoleOptions = [
+    {value:"User", label:<><BiSolidTrash/> User</>},
+    {value:"Collector", label:<><FaTruck/> Collector</>}
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -91,11 +99,12 @@ const Register = ({setIsLoggedIn}) => {
 
           <div>
             <Label htmlFor="role" className="mb-2 block">Pilih Role</Label>
-            <Select id="role" onChange={handleChange} required>
-              <option value="">-- Pilih Role --</option>
-              <option value="User">User</option>
-              <option value="Pengepul">Pengepul</option>
-            </Select>
+            <Select 
+            id="role"
+            options={RoleOptions}
+            onChange={(selectedOptionRole) => setFormData({...formData, role: selectedOptionRole.value})}
+            />
+
           </div>
 
           <div className="flex items-center gap-2">

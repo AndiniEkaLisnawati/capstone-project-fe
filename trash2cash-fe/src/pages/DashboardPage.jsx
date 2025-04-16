@@ -1,6 +1,6 @@
 import React from 'react'
 import UserDashboard from "../components/dashboard/UserDashboard";
-import PengepulDashboard from "../components/dashboard/PengepulDashboard";
+import CollectorDashboard from '../components/dashboard/CollectorDashboard';
 import AdminDashboard from "../components/dashboard/AdminDashboard";
 
 const DashboardPage = () => {
@@ -9,7 +9,7 @@ const DashboardPage = () => {
   return (
     <>
       {userRole === "User" && <UserDashboard />}
-      {userRole === "Pengepul" && <PengepulDashboard />}
+      {userRole === "Collector" && <CollectorDashboard />}
       {userRole === "Admin" && <AdminDashboard />}
     </>
   );

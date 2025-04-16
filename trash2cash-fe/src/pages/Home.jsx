@@ -3,6 +3,7 @@ import ScanAndEarn from "../components/ScanAndEarn"
 import FooterSection from "../components/FooterSection"
 import Testimonials from "../components/Testimonials"
 import OurFiture from "../components/OurFiture"
+import PointsDashboard from "../components/PointDashbord"
 import { Hero } from "../components/Hero"
 
  function Home({isLoggedIn, setIsLoggedIn}) {

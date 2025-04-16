@@ -1,14 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
-import { HiMail } from "react-icons/hi";
-import { TextInput } from "flowbite-react";
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
+import { HiMail } from 'react-icons/hi';
+import { TextInput } from 'flowbite-react';
 
 export default function Login({ setIsLoggedIn }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const handleChange = (e) => {
@@ -19,44 +19,41 @@ export default function Login({ setIsLoggedIn }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/login",
-        {
-          email: formData.email,
-          password: formData.password,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+      const response = await axios.post("http://localhost:3000/api/login", {
+        email: formData.email,
+        password: formData.password,
+      }, {
+        headers: { "Content-Type": "application/json" }
+      });
 
       console.log("Login response:", response.data);
 
-      alert("Login berhasil!");
+      const { token, user } = response.data.payload;
+
+      // Simpan token & role ke localStorage
+      localStorage.setItem('token', token);
+      localStorage.setItem('role', user.role);
+
+      alert('Login berhasil!');
       setIsLoggedIn(true);
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("email", formData.email);
-      localStorage.setItem("userId", response.data.user.id);
-      if (response.data.token) {
-        localStorage.setItem()
+
+      // Redirect berdasarkan role
+      if (user.role === 'admin') {
+        navigate('/admin-dashboard');
+      } else if (user.role === 'collector') {
+        navigate('/collector-dashboard');
+      } else {
+        navigate('/user-dashboard');
       }
-      setTimeout(() => {
-        navigate("/");
-      }, 100);
+
     } catch (error) {
-      console.error("Login gagal:", error.response?.data || error.message);
-      alert(
-        "Login gagal: " + (error.response?.data?.message || "Terjadi kesalahan")
-      );
+      console.error('Login gagal:', error.response?.data || error.message);
+      alert('Login gagal: ' + (error.response?.data?.message || 'Terjadi kesalahan'));
     }
   };
 
   return (
-    <section
-      className=" md:h-screen lg:py-0 dark:bg-gray-900"
-      style={{ backgroundImage: "url('/src/assets/images/BackgroundLR.png')" }}
-    >
+    <section className=" md:h-screen lg:py-0 dark:bg-gray-900" style={{ backgroundImage: "url('/src/assets/images/BackgroundLR.png')" }}>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 ">
         <div className="w-full bg-white/80 backdrop-blur-md rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="flex flex-col space-y-4 p-6 md:p-8">
@@ -65,10 +62,7 @@ export default function Login({ setIsLoggedIn }) {
             </h1>
             <form className="space-y-4" onSubmit={handleLogin}>
               <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
+                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Your email
                 </label>
                 <TextInput
@@ -83,10 +77,7 @@ export default function Login({ setIsLoggedIn }) {
                 />
               </div>
               <div>
-                <label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
+                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Password
                 </label>
                 <input
@@ -106,10 +97,7 @@ export default function Login({ setIsLoggedIn }) {
                     type="checkbox"
                     className="w-4 h-4 rounded"
                   />
-                  <label
-                    htmlFor="remember"
-                    className="ml-2 text-sm text-gray-500 dark:text-gray-300"
-                  >
+                  <label htmlFor="remember" className="ml-2 text-sm text-gray-500 dark:text-gray-300">
                     Remember me
                   </label>
                 </div>
@@ -127,11 +115,8 @@ export default function Login({ setIsLoggedIn }) {
                 Sign in
               </button>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Don’t have an account yet?{" "}
-                <Link
-                  to="/register"
-                  className="font-medium text-[#00C81E] hover:underline"
-                >
+                Don’t have an account yet?{' '}
+                <Link to="/register" className="font-medium text-[#00C81E] hover:underline">
                   Sign up
                 </Link>
               </p>
