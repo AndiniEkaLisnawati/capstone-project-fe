@@ -37,6 +37,9 @@ function App() {
           <Route path="/collector-dashboard" element={<CollectorDashboard />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/challenges" element={<ChallengePage />} /> 
+          <Route path="/education" element={<InteractiveEducation />} /> 
+          <Route path="/articles/:slug" element={<ArticlePage />} />
+
         </Routes>
       </div>
     </>
