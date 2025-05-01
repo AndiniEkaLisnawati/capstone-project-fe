@@ -15,7 +15,7 @@ const Register = ({setIsLoggedIn}) => {
     password: "",
     repeatPassword: "",
     phone: "",
-    role: "", // user / pengepul
+    role: "", // user / collector
   });
 
   const handleChange = (e) => {
@@ -27,8 +27,8 @@ const Register = ({setIsLoggedIn}) => {
   };
 
   const RoleOptions = [
-    {value:"User", label:<><BiSolidTrash/> User</>},
-    {value:"Collector", label:<><FaTruck/> Collector</>}
+    {value:"user", label:<><BiSolidTrash/> User</>},
+    {value:"collector", label:<><FaTruck/> Collector</>}
   ];
 
   const handleSubmit = async (e) => {
@@ -54,6 +54,7 @@ const Register = ({setIsLoggedIn}) => {
       setIsLoggedIn(true);
       localStorage.setItem("role", formData.role);
       localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("token", response.token);
       localStorage.setItem("email", formData.email);
       setTimeout(() => {
         navigate("/");
@@ -65,8 +66,8 @@ const Register = ({setIsLoggedIn}) => {
   };
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 w-full min-h-screen flex justify-center items-center py-25" style={{ backgroundImage: "url('/src/assets/images/BackgroundLR.png')" }}>
-      <div className="w-full bg-white/80 rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+    <div className="bg-gray-50 md:py-25 dark:bg-gray-900 w-full min-h-screen flex justify-center items-center pt-20 " style={{ backgroundImage: "url('/BackgroundLR.png')" }}>
+      <div className=" w-full bg-white/80 md:rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-6 md:p-8 leading-tight">
           <h1 className="text-xl font-bold text-gray-900 md:text-2xl dark:text-white">
             Create your Account

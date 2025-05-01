@@ -8,9 +8,9 @@ const DashboardPage = () => {
   console.log("halo aku page")
   return (
     <>
-      {userRole === "User" && <UserDashboard />}
-      {userRole === "Collector" && <CollectorDashboard />}
-      {userRole === "Admin" && <AdminDashboard />}
+      {userRole === "user" && <UserDashboard />}
+      {userRole === "collector" && <CollectorDashboard />}
+      {userRole === "admin" && <AdminDashboard />}
     </>
   );
 }

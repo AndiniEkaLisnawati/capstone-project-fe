@@ -6,12 +6,15 @@ import DashboardCard from '../DashboardCard';
 import { StarIcon, FlagIcon, CheckIcon, PackageIcon } from "lucide-react";
 import { FaClock } from "react-icons/fa";
 import { Button } from  "flowbite-react";
+import axios from 'axios';
 
 
 
 
 export default function UserDashboard() {
   console.log("user dashboard")
+  console.log(localStorage.getItem("token"));
+
   const [data, setData] = useState({
     points: 150,
     challengeCount: 20,
@@ -20,7 +23,7 @@ export default function UserDashboard() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:3000/dashboard/user")
+    fetch("http://localhost:3000/user")
       .then((res) => res.json())
       .then((resData) => {
         setData(resData);
@@ -43,7 +46,7 @@ export default function UserDashboard() {
       </div>
     </div>
 
-      <TrashInput/>
+    <TrashInput/>
 
   </>
   );
@@ -84,102 +87,131 @@ export default function UserDashboard() {
     </select>
   );
   
-  const DatePicker = ({ id, label, placeholder, onChange }) => (
-    <div>
-      {label && <Label htmlFor={id}>{label}</Label>}
-      <Input
-        type="date"
-        id={id}
-        placeholder={placeholder}
-        onChange={(e) => onChange(e.target.value, e.target.value)}
-      />
-    </div>
-  );
-
-   function TrashInput() {
-    const categoryOptions = [
-      { value: "plastik", label: "Plastik" },
-      { value: "kertas", label: "Kertas" },
-      { value: "logam", label: "Logam" },
-      { value: "kaca", label: "Kaca" },
-      { value: "lainnya", label: "Lainnya" },
-    ];
+  function TrashInput() {
+    const [formData, setFormData] = useState({
+      name: "",
+      weight: "",
+      location: '',
+      status: "Available", // Status awal
+    });
   
-    const handleSelectChange = (value) => {
-      console.log("Kategori sampah:", value);
+    const [image, setImage] = useState(null); // Menyimpan gambar yang diupload
+
+  
+    const handleChange = (e) => {
+      setFormData((prev) => ({
+        ...prev,
+        [e.target.id]: e.target.value,
+      }));
+    };
+
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const token = localStorage.getItem("token");
+  
+      // Membuat FormData untuk mengirimkan data termasuk gambar
+      const payload = new FormData();
+      payload.append("name", formData.name);
+      payload.append("weight", formData.weight);
+      payload.append("location", formData.location);
+      payload.append("status", formData.status); // Menambahkan status
+  
+      if (image) {
+        payload.append("file", image); // Menambahkan gambar yang dipilih
+      }
+  
+      try {
+        const response = await axios.post("https://reasonable-courtesy-production.up.railway.app/api/trash", payload, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        alert("Sampah berhasil dijual: " + response.data.message);
+        setFormData({
+          name: "",
+          weight: "",
+          location: '',
+          status: "Available", // Reset status
+        });
+        setImage(null); // Reset gambar setelah submit
+      } catch (error) {
+        const errorMessage = error.response?.data?.message || "Gagal menjual sampah.";
+        alert("Error: " + errorMessage);
+      }
     };
   
     return (
-      <CardForm title="Form Penjualan Sampah">
-        <div className="space-y-6">
-          <div>
-            <Label htmlFor="trashName">Nama Sampah</Label>
-            <Input type="text" id="trashName" placeholder="Contoh: Botol plastik bekas" />
-          </div>
-  
-          <div>
-            <Label htmlFor="category">Kategori Sampah</Label>
-            <Select options={categoryOptions} onChange={handleSelectChange} />
-          </div>
-  
-          <div>
-            <Label htmlFor="weight">Berat (kg)</Label>
-            <Input type="number" step="0.1" min="0" id="weight" placeholder="Contoh: 1.5" />
-          </div>
-  
-          <div>
-            <DatePicker
-              id="pickup-date"
-              label="Tanggal Penjemputan"
-              placeholder="Pilih tanggal"
-              onChange={(date) => console.log("Tanggal penjemputan:", date)}
-            />
-          </div>
-  
-          <div>
-            <Label htmlFor="pickup-time">Waktu Penjemputan</Label>
-            <div className="relative">
-              <Input
-                type="time"
-                id="pickup-time"
-                onChange={(e) => console.log("Waktu penjemputan:", e.target.value)}
-              />
-              <span className="absolute text-gray-500 -translate-y-1/2 pointer-events-none right-3 top-1/2 dark:text-gray-400">
-                <FaClock />
-              </span>
-            </div>
-          </div>
-  
-          <div>
-            <Label htmlFor="note">Catatan Tambahan</Label>
-            <div className="relative">
+      <form onSubmit={handleSubmit}>
+        <CardForm title="Form Penjualan Sampah">
+          <div className="space-y-6">
+            <div>
+              <Label htmlFor="name">Nama Sampah</Label>
               <Input
                 type="text"
-                placeholder="Contoh: Harap hubungi sebelum datang"
+                id="name"
+                placeholder="Contoh: Botol plastik bekas"
+                value={formData.name}
+                onChange={handleChange}
               />
             </div>
-          </div>
   
-          <div>
-            <Label htmlFor="payment">Estimasi Pembayaran</Label>
-            <div className="relative">
-              <Input type="text" placeholder="Contoh: Rp10.000" className="pl-[62px]" />
-              <span className="absolute left-0 top-1/2 flex h-11 w-[46px] -translate-y-1/2 items-center justify-center border-r border-gray-200 dark:border-gray-800">
-                <span className="text-sm text-gray-500 dark:text-gray-400">Rp</span>
-              </span>
+            <div>
+              <Label htmlFor="weight">Berat (kg)</Label>
+              <Input
+                type="number"
+                step="0.1"
+                min="0"
+                id="weight"
+                placeholder="Contoh: 1.5"
+                value={formData.weight}
+                onChange={handleChange}
+              />
+            </div>
+  
+            <div>
+              <Label htmlFor="location">Lokasi</Label>
+              <Input
+                type="text"
+                id="location"
+                placeholder="Contoh: Jakarta"
+                value={formData.location}
+                onChange={handleChange}
+              />
+            </div>
+  
+            <div>
+              <Label htmlFor="status">Status Sampah</Label>
+              <Select
+                options={[
+                  { label: "Tersedia", value: "Available" },
+                  { label: "Dijual", value: "Sold" },
+                ]}
+                onChange={(value) => setFormData((prev) => ({ ...prev, status: value }))}
+              />
+            </div>
+  
+            <div>
+              <Label htmlFor="file">Upload Gambar Sampah</Label>
+              <input
+                type="file"
+                id="file"
+                onChange={(e) => setImage(e.target.files[0])}
+              />
+            </div>
+  
+            <div>
+              <Button
+                type="submit"
+                className="w-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white hover:bg-gradient-to-br focus:ring-green-300 dark:focus:ring-green-800"
+              >
+                Jual Sampah
+              </Button>
             </div>
           </div>
-
-          <div>
-            <UploadImage/>
-          </div>
-
-          <div>
-          <Button className=" w-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white hover:bg-gradient-to-br focus:ring-green-300 dark:focus:ring-green-800">
-            Jual Sampah
-          </Button>
-          </div>
-        </div>
-      </CardForm>
+        </CardForm>
+      </form>
     );
   }

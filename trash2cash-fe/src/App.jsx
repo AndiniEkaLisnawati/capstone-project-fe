@@ -7,9 +7,13 @@ import DashboardPage from "./pages/DashboardPage";
 import ChallengePage from "./pages/ChallengePage";
 import UserDashboard from "./components/dashboard/UserDashboard";
 import AdminDashboard from "./components/dashboard/AdminDashboard";
+import CollectorDashboard from "./components/dashboard/CollectorDashboard";
+import InteractiveEducation from "./components/InteractiveEducation";
+import ArticlePage from "./components/ArticlePage";
+import UploadImage from "./components/UploadImage";
+import PointDashbord from "./components/PointDashbord";
 import { useState } from "react";
 import { useEffect } from "react";
-import CollectorDashboard from "./components/dashboard/CollectorDashboard";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -39,6 +43,8 @@ function App() {
           <Route path="/challenges" element={<ChallengePage />} /> 
           <Route path="/education" element={<InteractiveEducation />} /> 
           <Route path="/articles/:slug" element={<ArticlePage />} />
+          <Route path="/uploadimage" element={<UploadImage/>} />
+          <Route path="/dashboardpoint" element={<PointDashbord/>}/>
 
         </Routes>
       </div>

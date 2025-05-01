@@ -23,7 +23,7 @@ export default function UploadImage() {
     const formData = new FormData();
     formData.append("file", selectedFile);
 
-    const response = await axios.post("http://127.0.0.1:5000/predict", formData, {
+    const response = await axios.post("https://puunnnpun-ml-crashtocash.hf.space/predict", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -40,7 +40,7 @@ export default function UploadImage() {
       {/* Header */}
       <div className="relative z-10 flex flex-col items-center justify-center px-4 py-24 text-center">
         <h1 className="text-5xl font-extrabold text-gray-800 mb-4">
-          <span className="text-black"></span> Upload sampahmu disini
+          <span className="text-black">1.</span> Upload
         </h1>
 
         <p className="text-xl text-green-700 font-semibold mb-2">

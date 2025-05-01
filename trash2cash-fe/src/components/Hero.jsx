@@ -10,7 +10,7 @@ import Waste from "../assets/images/Waste.png"
 export const Hero = () => {
   return (
     <>
-  <div className="bg-white flex flex-row justify-center w-full">
+  <div className="bg-white flex flex-row justify-center w-full ">
       <div className="bg-white max-w-[1440px] max-h-[905px]">
         <div className="relative w-[1233px] h-[735px] top-[134px] left-[43px]">
           <div className="absolute w-[1223px] h-[735px] top-0 left-2">

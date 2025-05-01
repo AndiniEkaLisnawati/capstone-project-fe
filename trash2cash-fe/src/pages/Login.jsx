@@ -30,21 +30,15 @@ export default function Login({ setIsLoggedIn }) {
 
       const { token, user } = response.data.payload;
 
+
       // Simpan token & role ke localStorage
       localStorage.setItem('token', token);
       localStorage.setItem('role', user.role);
 
       alert('Login berhasil!');
+      
+      navigate('/');
       setIsLoggedIn(true);
-
-      // Redirect berdasarkan role
-      if (user.role === 'admin') {
-        navigate('/admin-dashboard');
-      } else if (user.role === 'collector') {
-        navigate('/collector-dashboard');
-      } else {
-        navigate('/user-dashboard');
-      }
 
     } catch (error) {
       console.error('Login gagal:', error.response?.data || error.message);
@@ -53,8 +47,8 @@ export default function Login({ setIsLoggedIn }) {
   };
 
   return (
-    <section className=" md:h-screen lg:py-0 dark:bg-gray-900" style={{ backgroundImage: "url('/src/assets/images/BackgroundLR.png')" }}>
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 ">
+    <section className="md:h-screen min-h-screen lg:py-0 dark:bg-gray-900" style={{ backgroundImage: "url('/BackgroundLR.png')" }}>
+      <div className="flex flex-col items-center justify-center px-3 py-36 mx-auto sm:max-h-screen sm:py-40 md:h-screen lg:py-0 ">
         <div className="w-full bg-white/80 backdrop-blur-md rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="flex flex-col space-y-4 p-6 md:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -78,7 +72,7 @@ export default function Login({ setIsLoggedIn }) {
               </div>
               <div>
                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Password
+                  Password 
                 </label>
                 <input
                   type="password"
