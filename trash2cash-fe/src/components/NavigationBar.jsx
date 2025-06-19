@@ -20,7 +20,7 @@ const NavigationBar = ({isLoggedIn}) => {
     </NavbarBrand>
         <NavbarToggle className='gap-4 bg-[#00C81E] text-black' />
 
-      <NavbarCollapse className='bg-amber-50 md:bg-white'>
+      <NavbarCollapse className='bg-amber-50 md:bg-white dark:bg-gray-800'>
         <NavbarLink href="/" className="text-amber-950 hover:!text-[#009F18] font-medium"> 
           Home
         </NavbarLink>
